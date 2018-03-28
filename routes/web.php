@@ -47,13 +47,12 @@ Route::get('/', function () {
 
 //	$user = \App\User::whereIn('id', [31, 30]);
 //	$user->delete();
-
-    return view('welcome');
+    return view('welcome', compact('users'));
 });
 
 Route::get('hello/{name}', function($name){
-//	return view('hello', compact('name'));
-	return redirect()->route('products_single');
+	return view('hello');
+	//return redirect()->route('products_single');
 });
 
 ////Users
