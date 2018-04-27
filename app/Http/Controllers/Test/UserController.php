@@ -15,10 +15,28 @@ class UserController extends Controller
 	    return $users;
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
-	    $users = User::findOrFail($id);
+	   $users = User::findOrFail($id);
 
-	    return $users;
+	    return response('Hello World', 200)
+		           ->withHeaders(['Content-Type' => 'text/plain']);
+		    ;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -78,7 +78,13 @@ Route::prefix('products')->name('products_')->group(function(){
 	})->name('single');
 });
 
-Route::view('/view', 'view', ['name' => 'Nanderson']);
+Route::group(['middleware' => ['test']], function(){
+	Route::get('middle', function() { return 'Middle'; });
+
+	Route::get('middle/2', function() { return 'Middle 2'; });
+});
+
+Route::view('/view', 'view', ['name' => 'Nanderson'])->middleware('test');
 
 Route::get('show/{name?}/{sobrenome?}', function($name = null, $sobrenome = null){
 	if(is_null($name))
