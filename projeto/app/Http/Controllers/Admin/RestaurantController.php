@@ -29,7 +29,8 @@ class RestaurantController extends Controller
 		$restaurant = new Restaurant();
 		$restaurant->create($restaurantData);
 
-		print 'Restaurante criado com sucesso!';
+		flash('Restaurante criado com sucesso!')->success();
+		return redirect()->route('restaurant.index');
 	}
 
 	public function edit(Restaurant $restaurant)
@@ -46,7 +47,8 @@ class RestaurantController extends Controller
 		$restaurant = Restaurant::findOrFail($id);
 		$restaurant->update($restaurantData);
 
-		print 'Restaurante atualizado com sucesso!';
+		flash('Restaurante atualizado com sucesso!')->success();
+		return redirect()->route('restaurant.edit', ['restaurant' => $id]);
 	}
 
 	public function delete($id)
@@ -54,6 +56,7 @@ class RestaurantController extends Controller
 		$restaurant = Restaurant::findOrFail($id);
 		$restaurant->delete();
 
-		print 'Restaurante removido com sucesso!';
+		flash('Restaurante removido com sucesso!')->success();
+		return redirect()->route('restaurant.index');
 	}
 }
