@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterTableRestaurant extends Migration
+class AlterTableRestaurantsAddForeignOwner extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AlterTableRestaurant extends Migration
      */
     public function up()
     {
-        Schema::table('restaurant', function(Blueprint $table){
-			$table->rename('restaurants');
+        Schema::table('restaurants', function(Blueprint $table){
+			$table->integer('owner_id')->unsigned();
+			$table->foreign('owner_id')->references('id')->on('users');
         });
     }
 
@@ -26,7 +27,8 @@ class AlterTableRestaurant extends Migration
     public function down()
     {
 	    Schema::table('restaurants', function(Blueprint $table){
-		    $table->rename('restaurant');
+		    $table->dropForeign('restaurants_owner_id_foreign');
+		    $table->dropColumn('owner_id');
 	    });
     }
 }

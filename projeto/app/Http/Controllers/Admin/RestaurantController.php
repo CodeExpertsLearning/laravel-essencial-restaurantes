@@ -6,13 +6,16 @@ use App\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
     public function index()
     {
-    	$restaurants = Restaurant::all();
-	    return view('admin.restaurants.index', compact('restaurants'));
+//    	$restaurants = Restaurant::where('owner_id', Auth::user()->id)->get();
+    	$restaurants = Auth::user()->restaurants;
+
+    	return view('admin.restaurants.index', compact('restaurants'));
     }
 
 	public function new()
@@ -26,8 +29,8 @@ class RestaurantController extends Controller
 
 		$request->validated();
 
-		$restaurant = new Restaurant();
-		$restaurant->create($restaurantData);
+		$user = Auth::user();
+		$user->restaurants()->create($restaurantData);
 
 		flash('Restaurante criado com sucesso!')->success();
 		return redirect()->route('restaurant.index');
