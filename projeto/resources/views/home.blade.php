@@ -2,22 +2,20 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
+   <h1>Restaurantes</h1>
+    <hr>
+    <div class="row">
+        @foreach($restaurants as $r)
+            <div class="col-4">
+                <h2>
+                    <a href="{{route('home.single', ['id' => $r->id])}}">{{$r->name}}</a>
+                </h2>
+                <p>
+                    {{$r->description}}
+                </p>
             </div>
-        </div>
+        @endforeach
     </div>
+    {{$restaurants->links()}}
 </div>
 @endsection
