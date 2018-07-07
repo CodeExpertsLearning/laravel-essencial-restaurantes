@@ -25,6 +25,9 @@ Route::group(['middleware' => ['auth']], function(){
 			Route::get('edit/{restaurant}', 'RestaurantController@edit')->name('restaurant.edit');
 			Route::post('update/{id}', 'RestaurantController@update')->name('restaurant.update');
 			Route::get('remove/{id}', 'RestaurantController@delete')->name('restaurant.remove');
+
+			Route::get('/photos/{id}', 'RestaurantPhotoController@index')->name('restaurant.photo');
+			Route::post('/photos/{id}', 'RestaurantPhotoController@save')->name('restaurant.photo.save');
 		});
 
 		Route::prefix('users')->group(function(){

@@ -7,11 +7,14 @@
     <div class="row">
         @foreach($restaurants as $r)
             <div class="col-4">
+                @if($r->photos()->count())
+                <img src="{{asset('/images/' . $r->photos()->first()->photo)}}" alt="" class="img-fluid">
+                @endif
                 <h2>
                     <a href="{{route('home.single', ['id' => $r->id])}}">{{$r->name}}</a>
                 </h2>
                 <p>
-                    {{$r->description}}
+                    {{str_limit($r->description, 150)}}
                 </p>
             </div>
         @endforeach

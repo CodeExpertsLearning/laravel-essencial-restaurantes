@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Editar Usuário</h1>
         <hr>
-        <form action="{{route('user.store')}}" method="post">
+        <form action="{{route('user.update', ['id' => $user->id])}}" method="post">
             {{csrf_field()}}
             <p class="form-group">
                 <label>Nome do Usuário</label>
