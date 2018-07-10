@@ -11,7 +11,7 @@
                 <img src="{{asset('/images/' . $r->photos()->first()->photo)}}" alt="" class="img-fluid">
                 @endif
                 <h2>
-                    <a href="{{route('home.single', ['id' => $r->id])}}">{{$r->name}}</a>
+                    <a href="{{route('home.single', ['slug' => $r->slug])}}">{{$r->name}}</a>
                 </h2>
                 <p>
                     {{str_limit($r->description, 150)}}

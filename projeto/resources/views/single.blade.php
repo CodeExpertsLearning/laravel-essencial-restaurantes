@@ -4,17 +4,17 @@
 <div class="container">
     <div class="row">
        <div class="col-12">
-           <h2>{{$id->name}}</h2>
-           <p>{{$id->description}}</p>
+           <h2>{{$restaurant->name}}</h2>
+           <p>{{$restaurant->description}}</p>
            <p>
-                <address>Endereço: {{$id->address}}</address>
+                <address>Endereço: {{$restaurant->address}}</address>
            </p>
            <hr>
        </div>
         <div class="col-12">
             Cardápio:
             <ul class="list-group">
-                @foreach($id->menus as $m)
+                @foreach($restaurant->menus as $m)
                     <li class="list-group-item">
                         {{$m->name}} <br>
                         R$ {{number_format($m->price, '2', ',', '.')}}
@@ -27,8 +27,8 @@
             <hr>
         </div>
         <div class="row">
-            @if($id->photos()->count())
-                @foreach($id->photos as $photo)
+            @if($restaurant->photos()->count())
+                @foreach($restaurant->photos as $photo)
                     <div class="col-4">
                         <img src="{{asset('/images/' . $photo->photo)}}" alt="" class="img-fluid">
                     </div>

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/restaurante/{id}', 'HomeController@get')->name('home.single');
+Route::get('/restaurante/{slug}', 'HomeController@get')->name('home.single');
 
 Route::group(['middleware' => ['auth']], function(){
 
